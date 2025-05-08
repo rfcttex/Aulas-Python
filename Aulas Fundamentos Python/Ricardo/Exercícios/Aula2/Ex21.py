@@ -1,3 +1,3 @@
 frase = input("Escreva uma frase: ")
 
-print(f"A letra A aparece: {frase.count("a")}, vezes na sua frase.")
+print(f"A letra A aparece: {frase.count("A")}, vezes na sua frase.")
