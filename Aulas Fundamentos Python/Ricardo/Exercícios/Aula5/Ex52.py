@@ -10,7 +10,7 @@ for i in equipas[0:5]:
     print(i)
 
 print("\nOs últimos 4 classificados:")
-for i in equipas[-4:]:
+for i in equipas[20:15:-1]:
     print(i)
 
 print("\nEquipas por ordem alfabética:")
