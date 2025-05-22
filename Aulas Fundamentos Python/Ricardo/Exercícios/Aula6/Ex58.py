@@ -8,7 +8,7 @@ for i in range(0,5,1):
   valores.append(numero)
   numCounter += 1
   if numCounter > 1:
-    if (numero) < (valores.index(i)):
+    if (numero) < (valores[i]):
       valores.insert(0,numero)
     pass
   
