@@ -1,65 +1,54 @@
-sorteios = []
-chaveMachineFinal = []
-chavePlayerGuess = list()
-numeroChavesGeradas = int(input(f"Escreva o número de chaves a gerar: "))
-
 from random import randint
 
+chaveMachineFinal = []
+chavePlayerGuess = []
 
-for i in range(0,numeroChavesGeradas,1):
+numeroChavesGeradas = int(input("Escreva o número de chaves a gerar: "))
+
+# Geração das chaves sorteadas (máquina)
+for i in range(numeroChavesGeradas):
     numeros = []
     estrelas = []
-    # Constructor for Numbers (Machine)
-    for i in range(0,5,1):
-        while True:
-            numeroSorteado = randint(1, 50)
-            print(f"Número sorteado: ({numeroSorteado})") 
-            if numeroSorteado in numeros:
-                print("Número já inserido. A Tentar novamente...")
-            else:
-                numeros.append(numeroSorteado)
-                break
-    # Constructor for Starts (Machine)
-    for i in range(0,2,1):
-        while True:
-            estrelaSorteada = randint(1, 12)
-            print(f"Estrela sorteada: ({estrelaSorteada})") 
-            if estrelaSorteada in estrelas:
-                print("Estrela já inserida. A Tentar novamente...")
-            else:
-                estrelas.append(estrelaSorteada)
-                break
-    chaveMachineFinal.append([numeros, estrelas])
+    # Números (1 a 50, sem repetir)
+    while len(numeros) < 5:
+        numeroSorteado = randint(1, 50)
+        if numeroSorteado not in numeros:
+            numeros.append(numeroSorteado)
+    # Estrelas (1 a 12, sem repetir)
+    while len(estrelas) < 2:
+        estrelaSorteada = randint(1, 12)
+        if estrelaSorteada not in estrelas:
+            estrelas.append(estrelaSorteada)
+    chaveMachineFinal.append([sorted(numeros), sorted(estrelas)])
 
-for i in range(0,numeroChavesGeradas,1):
+print(f"Cheat bro B): {chaveMachineFinal}")
+
+# Palpites do jogador
+for i in range(numeroChavesGeradas):
     numeros = []
     estrelas = []
-    # Constructor for Numbers (Player guess)
-    for i in range(0,5,1):
-        while True:
-            guessNumero = int(input(f"Escreva o seu palpite para o {i+1}º número: (1 a 50) "))
-            if guessNumero < 1 or guessNumero > 50:
-                print("Número fora do intervalo. Tente novamente.")
-            elif guessNumero in numeros:
-                print("Número já inserido. Tente novamente.")
-            else:
-                numeros.append(guessNumero)
-                break
+    print(f"\nPalpite para a chave {i+1}:")
+    # Números do jogador
+    while len(numeros) < 5:
+        guessNumero = int(input(f"Digite o {len(numeros)+1}º número (1 a 50): "))
+        if guessNumero < 1 or guessNumero > 50:
+            print("Número fora do intervalo. Tente novamente.")
+        elif guessNumero in numeros:
+            print("Número já inserido. Tente novamente.")
+        else:
+            numeros.append(guessNumero)
+    # Estrelas do jogador
+    while len(estrelas) < 2:
+        guessEstrela = int(input(f"Digite a {len(estrelas)+1}ª estrela (1 a 12): "))
+        if guessEstrela < 1 or guessEstrela > 12:
+            print("Estrela fora do intervalo. Tente novamente.")
+        elif guessEstrela in estrelas:
+            print("Estrela já inserida. Tente novamente.")
+        else:
+            estrelas.append(guessEstrela)
+    chavePlayerGuess.append([sorted(numeros), sorted(estrelas)])
 
-    # Constructor for Starts (Player guess)
-    for i in range(0,2,1):
-        while True:
-            guessEstrela = int(input(f"Escreva o seu palpite para a {i+1}º estrela: (1 a 12) "))
-            if guessEstrela < 1 or guessEstrela > 12:
-                print("Estrela fora do intervalo. Tente novamente.")
-            elif guessEstrela in estrelas:
-                print("Estrela já inserida. Tente novamente.")
-            else:
-                estrelas.append(guessEstrela)
-                break
-    chavePlayerGuess.append([numeros, estrelas])
-
-print(f"O seu palpite foi: {chavePlayerGuess}")
+print(f"\nO seu palpite foi: {chavePlayerGuess}")
 print(f"A chave sorteada é: {chaveMachineFinal}")
 
 if chavePlayerGuess == chaveMachineFinal:
