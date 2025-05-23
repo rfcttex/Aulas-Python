@@ -1,48 +1,68 @@
-""" Cria um programa que crie palpites para
-o Euromilhões. O programa deve
-perguntar quantas chaves serão geradas
-e deve sortear aleatoriamente 5 números
-de 1 a 50 [sem repetir] e 2 estrelas de
-1 a 12 [sem repetir]. Cada sorteio deve
-ser guardado numa lista composta.
-"""
-
-# num = int(input(f"Digite o valor para a posição [{i+1}, {j+1}]: "))
+sorteios = []
+chaveMachineFinal = []
+chavePlayerGuess = list()
+numeroChavesGeradas = int(input(f"Escreva o número de chaves a gerar: "))
 
 from random import randint
 
-matriz = []
-sumEven = 0
-sumSecondColumn = 0
 
-# Matrix Constructor
-for i in range(0,3,1):
-    linha = [] # Resets to empty on each iteration
-    for j in range(0,3,1):
-        num = randint(0, 10)
-        print(f"Linha: {i+1}º Coluna: {j+1}º. Valor inserido: ({num})") 
-        linha.append(num)
-    matriz.append(linha)
+for i in range(0,numeroChavesGeradas,1):
+    numeros = []
+    estrelas = []
+    # Constructor for Numbers (Machine)
+    for i in range(0,5,1):
+        while True:
+            numeroSorteado = randint(1, 50)
+            print(f"Número sorteado: ({numeroSorteado})") 
+            if numeroSorteado in numeros:
+                print("Número já inserido. A Tentar novamente...")
+            else:
+                numeros.append(numeroSorteado)
+                break
+    # Constructor for Starts (Machine)
+    for i in range(0,2,1):
+        while True:
+            estrelaSorteada = randint(1, 12)
+            print(f"Estrela sorteada: ({estrelaSorteada})") 
+            if estrelaSorteada in estrelas:
+                print("Estrela já inserida. A Tentar novamente...")
+            else:
+                estrelas.append(estrelaSorteada)
+                break
+    chaveMachineFinal.append([numeros, estrelas])
 
-# Matrix B)
-print("\nMatriz 3x3 formatada:")
-for i in range(0,3,1):
-    for j in range(0,3,1):
-        print(f"{matriz[i][j]:>2}",end=" ")
-    print()
+for i in range(0,numeroChavesGeradas,1):
+    numeros = []
+    estrelas = []
+    # Constructor for Numbers (Player guess)
+    for i in range(0,5,1):
+        while True:
+            guessNumero = int(input(f"Escreva o seu palpite para o {i+1}º número: (1 a 50) "))
+            if guessNumero < 1 or guessNumero > 50:
+                print("Número fora do intervalo. Tente novamente.")
+            elif guessNumero in numeros:
+                print("Número já inserido. Tente novamente.")
+            else:
+                numeros.append(guessNumero)
+                break
 
-for i in range(0,3,1):
-    for j in range(0,3,1):
-        # Sum of even numbers
-        if (matriz[i][j])%2 == 0:
-            sumEven += (matriz[i][j])
-        # Sum second column values
-        if j == 2:
-            sumSecondColumn += (matriz[i][j-1]) # info: Because Column 2 == index 1
-        # Maior valor da terceira linha
-        if i == 2:
-            maior = max(matriz[i])
+    # Constructor for Starts (Player guess)
+    for i in range(0,2,1):
+        while True:
+            guessEstrela = int(input(f"Escreva o seu palpite para a {i+1}º estrela: (1 a 12) "))
+            if guessEstrela < 1 or guessEstrela > 12:
+                print("Estrela fora do intervalo. Tente novamente.")
+            elif guessEstrela in estrelas:
+                print("Estrela já inserida. Tente novamente.")
+            else:
+                estrelas.append(guessEstrela)
+                break
+    chavePlayerGuess.append([numeros, estrelas])
 
-print(f"A soma de todos os valores pares: {sumEven}")
-print(f"A soma dos valores da segunda coluna: {sumSecondColumn}")
-print(f"O maior valor da terceira linha.: {maior}")
+print(f"O seu palpite foi: {chavePlayerGuess}")
+print(f"A chave sorteada é: {chaveMachineFinal}")
+
+if chavePlayerGuess == chaveMachineFinal:
+    print("Acertou! É milionário, 20 paus para todos!")
+else:
+    print("Ha! Ha! Perdeu.")
