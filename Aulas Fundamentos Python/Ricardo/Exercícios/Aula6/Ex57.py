@@ -16,4 +16,4 @@ while True:
     pass
   
 print(f"Valores inseridos: {valores}")
-print(f"Lista ordenada: {sorted(valores)}")
+print(f"Lista ordenada: {sorted(valores, reverse=True)}")
