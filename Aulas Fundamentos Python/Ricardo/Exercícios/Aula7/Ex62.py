@@ -37,7 +37,7 @@ for i in range(0,3,1):
             sumEven += (matriz[i][j])
         # Sum second column values
         if j == 2:
-            sumSecondColumn += (matriz[i][j-1]) # info: Because Column 2 == index 1
+            sumSecondColumn += (matriz[i][j]) # info: (Else if segunda coluna == á segunda que aparece (matriz[i][j-1]))
         # Maior valor da terceira linha
         if i == 2:
             maior = max(matriz[i])

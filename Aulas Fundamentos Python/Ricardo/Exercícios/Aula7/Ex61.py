@@ -3,6 +3,7 @@
 teclado. No final mostre a matriz com a
 formatação adequada.
 """
+# Feito com input aleatorio para melhora do desenvolvimento:
 # num = int(input(f"Digite o valor para a posição [{i+1}, {j+1}]: "))
 
 from random import randint
@@ -10,7 +11,7 @@ from random import randint
 matriz = []
 
 for i in range(0,3,1):
-    linha = [] # Resets to empty on each iteration
+    linha = [] # Em cada iteração reseta este array
     for j in range(0,3,1):
         num = randint(0, 10)
         print(f"Linha: {i+1}º Coluna: {j+1}º. Valor inserido: ({num})") 
