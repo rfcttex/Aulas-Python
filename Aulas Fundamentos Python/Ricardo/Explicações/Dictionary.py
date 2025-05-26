@@ -1,7 +1,6 @@
 filme = dict()
 playlist = list()
 
-
 filme["titulo"] = "The Thing" 
 filme["duração"] = "1h 48m" 
 
