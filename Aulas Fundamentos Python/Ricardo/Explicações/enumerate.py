@@ -1,6 +1,13 @@
-list = ["Ricardo","Pai","Formador"]
-print(list)
+""" The enumerate function in Python is used to loop over something (like a list) and have an automatic counter (index) alongside each item. """
 
-for i, palavra in enumerate(list):
-  print(f"Index: {i} , Value: {palavra}")
-  pass
+
+jogadores = ["ana", "bruno", "carla", "daniel"]
+
+for i, jogador in enumerate(jogadores, 1):
+    print(f"{i}º lugar: {jogador}")
+
+# Saída:
+# 1º lugar: ana
+# 2º lugar: bruno
+# 3º lugar: carla
+# 4º lugar: daniel
