@@ -23,7 +23,8 @@ print(f"Montante a Requesitar: {pessoa['Montante']} €")
 print(f"Prazo: {pessoa['Prazo']} anos")
 
 if pessoa["Remanescente"] > pessoa['Prestação Mensal'] :
-  print(f"Crédito Aprovado! \nPrestação mensal: {pessoa['Prestação Mensal']:.2f} €")
-  pass
+  pessoa["Situação"] = "Aprovado"
+  print(f"Crédito {pessoa["Situação"]}! \nPrestação mensal: {pessoa['Prestação Mensal']:.2f} €")
 else:
-    print(f"Crédito não Aprovado! \n O remanescente é inferor ou igual ao valor mensal do crédito.")
+    pessoa["Situação"] = "Não Aprovado"
+    print(f"Crédito {pessoa["Situação"]}! \n O remanescente é inferor ou igual ao valor mensal do crédito.")
