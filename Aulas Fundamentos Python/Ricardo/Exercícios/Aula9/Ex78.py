@@ -1,4 +1,10 @@
 def fatorial(valor, explicacao = False):
+    """_summary_
+
+    Args:
+        valor (_type_): _description_
+        explicacao (bool, optional): _description_. Defaults to False.
+    """
     if valor < 1:
         print("Valor inválido!")
     else:
