@@ -3,8 +3,17 @@
 # entanto vai fazer a validação para
 # aceitar apenas um valor numérico.
 
-value = int(input("Digite um valor: "))
-
 def input_ultra(value):
-  input = int(input(value))
-  return input
+  if value == type(int):
+    returnValue = int(input(value))
+    print(value)
+  if value == type(float):
+    returnValue = float(input(value))
+    print(value)
+  elif value == type(str):
+    returnValue = "Erro! Input não válido." 
+    print(value)
+  return returnValue
+
+value = input("Digite um valor numérico: ")
+input_ultra(value)
