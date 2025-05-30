@@ -31,5 +31,3 @@ for i in range(0,3,1):
   end = int(input("Qual o fim?: "))
   step = int(input("Qual o passo?: "))
   count(beg,end,step)
-  pass
-

@@ -9,3 +9,12 @@ for i in range(0,quantidade,1):
     valores.append(num)
 
 maior(quantidade,valores)
+
+# Solution 2 
+def maior2(*numeros):
+  print(f"{max(numeros)}")
+  
+maior2(1,2,3)
+maior2(1,2,3,6,2,7,)
+maior2(1,2,3,1,222,2)
+  
