@@ -12,3 +12,4 @@ for i in range(0,quantidade,1):
     notas.append(num)
 
 aluno(nome, notas)
+
