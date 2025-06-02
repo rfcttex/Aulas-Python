@@ -13,46 +13,35 @@
 
 # def turma(notas):
 #   media = sum(notas) / len(notas)
+
 #   status = "Aprovado" if media > 9.5 else "Reprovado"
 #   print(f"Nome do aluno: {nome}, Média: {media}, Status: {status}")
 
-infoTurma = []
+notas = []
 
 while True:
-  aluno = dict()
-  counter = 0
-  continuar = input(f"Deseja continuar a inserir notas dos alunos?: (s/n) ").strip().lower()
-  counter += 1
-  if continuar == "s":
-    aluno["Nota"] = float(input(f"Escreva a nota do {counter+1}º aluno: "))
-    infoTurma.append(aluno)
-  else:
-    break
-  
-for aluno in infoTurma:
-  notasTurma = aluno["Notas"]
-  maiorNota = notasTurma.max()
-  media = (notasTurma.sum()) / len(infoTurma)
-  
-print(f"Alunos: {aluno}")
-print(f"Turma: {infoTurma}")
-print(f"Maior Nota: {maiorNota}")
-print(f"Média da turma: {media}")
-print(f"Situação do aluno: {media}")
+    continuar = input("Deseja continuar a inserir notas dos alunos?: (s/n) ").strip().lower()
+    if continuar == "s":
+        nota = float(input(f"Escreva a nota do {len(notas)+1}º aluno: "))
+        notas.append(nota)
+    else:
+        break
 
+def turma(notas):
+    resultado = dict()
+    resultado['quantidade'] = len(notas)
+    resultado['maior'] = max(notas) if notas else None
+    resultado['media'] = sum(notas) / len(notas) if notas else 0
+    if resultado['media'] > 12:
+        resultado['situacao'] = 'boa'
+    elif resultado['media'] < 9.5:
+        resultado['situacao'] = 'fraca'
+    else:
+        resultado['situacao'] = 'razoável'
+    return resultado
 
-
-# from random import randint
-
-# jogadores = list()
-# numJogadores = randint(2,4)
-
-# for i in range(0,numJogadores,1):
-#   jogador = dict()  
-#   jogador["Nome"] = input(f"Insira o nome do jogador: ").strip().lower()
-#   jogador["Roll"] = randint(1, 20)
-#   jogadores.append(jogador)
-#   jogadores.sort(key=lambda x: x["Roll"], reverse=True)
-  
-# for i, jogador in enumerate(jogadores):
-#   print(f"{i+1}º lugar: O jogador {jogador['Nome']} rolou o valor: {jogador['Roll']}")
+resumo = turma(notas)
+print(f"Quantidade de notas: {resumo['quantidade']}")
+print(f"Maior Nota: {resumo['maior']}")
+print(f"Média da turma: {resumo['media']:.2f}")
+print(f"Situação da turma: {resumo['situacao']}")
