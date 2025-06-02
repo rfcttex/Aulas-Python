@@ -16,6 +16,18 @@ altura = float(input("Digite a sua altura em metros (Utilize um ponto (.) Ex: 1.
 peso = float(input("Digite o seu peso em kg: "))
 
 def imc(altura,peso):
+  """
+  Calcula o Índice de Massa Corporal (IMC) com base na altura e peso fornecidos, valida os valores de entrada e exibe a classificação correspondente.
+
+  Parâmetros:
+    altura (float): Altura da pessoa em metros. Deve ser maior que zero.
+    peso (float): Peso da pessoa em quilogramas. Deve ser maior que zero.
+
+  Retorno:
+    No return.
+
+  Exibe mensagem de erro caso altura ou peso sejam menores ou iguais a zero.
+  """
   # Validar os valores de entrada
   if altura <= 0 or peso <= 0:
     print("Altura e peso devem ser maiores que zero.")
@@ -36,6 +48,6 @@ def imc(altura,peso):
     else:
       classificacao = "Obesidade grau 3 (obesidade mórbida)"
     # Exibir o resultado
-    print(f"Seu IMC é {imc:.2f}. Classificação: {classificacao}.")
+    print(f"Seu IMC é {round(imc,2)}. Classificação: {classificacao}.")
     
 imc(altura,peso)
