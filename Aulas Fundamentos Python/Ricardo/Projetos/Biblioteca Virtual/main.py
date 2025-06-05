@@ -20,7 +20,7 @@ def main():
       case _:
         print("Opção inválida!")
         print()
-    resp = input("Deseja voltar ao menu?: (Pressione ENTER para continuar / Digite qualquer coisa para sair)").strip()
+    resp = input("\nDeseja voltar ao menu?: (Pressione ENTER para continuar / Escreva qualquer coisa para sair...)").strip()
     if resp:
         break
 
