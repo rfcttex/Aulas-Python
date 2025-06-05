@@ -6,6 +6,7 @@ def main():
   1 - Mostra a mensagem de boas vindas através da função welcome
   2 - Mostra a mensagem de boas vindas através da função welcome
   """
+  autores()
   welcome()
   while True:
     opcao = menu()
@@ -17,6 +18,10 @@ def main():
         show_all_books()
       case 2:
         searches()
+      case 3:
+        borrow()
+      case 4:
+        return_book()
       case _:
         print("Opção inválida!")
         print()
@@ -26,4 +31,3 @@ def main():
 
 if __name__ == "__main__":
   main()
-
