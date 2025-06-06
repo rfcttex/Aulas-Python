@@ -25,7 +25,7 @@ Cliente: Ricardo Mourão
 ## 🧱 Funcionalidades
 
 - 📜 **Listar livros disponíveis**
-- 🔍 **Pesquisar livros por: (1-ID) (2-Título) (3-Género)**
+- 🔍 **Pesquisar livros por: (1-ID | 2-Título | 3-Género)**
 - 📥 **Efetuar empréstimos com validação de estado e CC**
 - 📤 **Devolver livros com verificação de dados**
 - 🚫 **Sair e encerrar sessão (sem persistência de dados)**
