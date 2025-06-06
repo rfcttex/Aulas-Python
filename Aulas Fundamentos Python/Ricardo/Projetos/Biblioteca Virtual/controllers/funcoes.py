@@ -41,7 +41,7 @@ def menu():
 def show_all_books():
     """_summary_
     """
-    from catalogo import catalogo as livros
+    from data.catalogo import catalogo as livros
     print(f"A mostrar livros..")    
     print()
     for livro in livros:
@@ -60,7 +60,7 @@ def searches():
     """_summary_
     """
     option = int(input(f"\n(Pesquisa selecionada!) Como deseja procurar?\n1) Por ID\n2) Por Título\n3) Por Género\n-> "))
-    from catalogo import catalogo as livros
+    from data.catalogo import catalogo as livros
     match option:
         case 1: 
             found = False
@@ -113,7 +113,7 @@ def borrow():
     """
     :return:
     """
-    from catalogo import catalogo as livros
+    from data.catalogo import catalogo as livros
     found = False
     try:
         id = int(input(f"\nQual é o id? -> "))
@@ -147,7 +147,7 @@ def return_book():
     """
     :return:
     """
-    from catalogo import catalogo as livros
+    from data.catalogo import catalogo as livros
     try:
         id = int(input("Qual é o id? -> "))
     except ValueError:

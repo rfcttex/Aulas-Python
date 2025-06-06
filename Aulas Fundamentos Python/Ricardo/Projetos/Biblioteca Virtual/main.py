@@ -1,5 +1,4 @@
-from catalogo import catalogo as livros
-from utils.funcoes import *
+from controllers.funcoes import *
 
 def main():
   """Para já a main apenas mostra os nossos dados guardados no ficheiro importado acima
