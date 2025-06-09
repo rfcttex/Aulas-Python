@@ -2,19 +2,19 @@ def autores():
     """
     :return:
     """
-    print("Realizado por: Elisabete, João e Rui")
+    print("\nRealizado por: Elisabete, João e Rui")
 
 def welcome():
     """_summary_
     """
     print()
-    print(f"Bem-vindo à Biblioteca Virtual!!!")
+    print(f"\nBem-vindo à Biblioteca Virtual!!!")
 
 def menu():
     """_summary_
 
     Returns:
-        _type_: _description_
+    option (_type_: _description_)
     """
     print("\n--- Main Menu ---")
     print("[ 1 ] – Mostrar todos os livros")
@@ -24,19 +24,19 @@ def menu():
     print("[ 5 ] – Sair")
     while True:
         try:
-            option = int(input("Escolha uma opção: "))
+            option = int(input("\nEscolha uma opção: "))
             if option == 5:
                 print("\nEncerrando... Todos os dados serão perdidos.")
                 break
             if 1 <= option < 5:
                 return option
             else:
-                print("Erro ao selecionar opção. Escolha entre 1 e 5.")
+                print("\nErro ao selecionar opção. Escolha entre 1 e 5.")
         except KeyboardInterrupt:
-            print("Interrompeu!")
+            print("\nInterrompeu o programa!")
             return None
         except ValueError:
-            print("Insira um valor válido!")
+            print("\nInsira um valor válido!")
 
 def show_all_books():
     """_summary_
@@ -59,55 +59,68 @@ def searches():
         #c. Por Género
     """_summary_
     """
-    option = int(input(f"\n(Pesquisa selecionada!) Como deseja procurar?\n1) Por ID\n2) Por Título\n3) Por Género\n-> "))
     from data.catalogo import catalogo as livros
-    match option:
-        case 1: 
-            found = False
-            try:
-                id = int(input(f"\n(Pesquisa por ID selecionada!)\n Qual é o id? -> "))
-            except ValueError:
-                print("ID inválido. Introduza um número.")
-            print()
-            for livro in livros:
-                if livro.get('id') == id:
-                    found = True
-                    if found == True:
-                        print(
-            f"Livro encontrado! -> [ID {livro['id']}] “{livro['titulo']}” – {livro['autor']} ({livro['ano']}) [{livro['genero']}] → {livro['estado']}"
-            + (f" a → {livro['emprestado_por']}" if livro["emprestado_por"] else "")
-        )
-                    else:
-                        print("Livro não encontrado com esse ID.")
-        case 2:
-            found = False
-            title = input(f"\n(Pesquisa por Título selecionada!)\n Qual é o nome do livro? -> ").strip().lower()
-            print()
-            for livro in livros:
-                if livro.get('titulo').strip().lower() == title:
-                    found = True
-                    print(
-                        f"Livro encontrado! -> [ID {livro['id']}] “{livro['titulo']}” – {livro['autor']} ({livro['ano']}) [{livro['genero']}] → {livro['estado']}"
-                        + (f" a → {livro['emprestado_por']}" if livro["emprestado_por"] else "")
-                    )
-            if found == False:
-                print("Livro não encontrado!")
-        case 3:
-            found = False
-            gender = input(f"\n(Pesquisa por Género selecionada!)\n Qual é ogénero do livro? -> ").strip().lower()
-            print()
-            for livro in livros:
-                if livro.get('genero').strip().lower() == gender:
-                    found = True
-                    print(
-                        f"Livro encontrado! -> [ID {livro['id']}] “{livro['titulo']}” – {livro['autor']} ({livro['ano']}) [{livro['genero']}] → {livro['estado']}"
-                        + (f" a → {livro['emprestado_por']}" if livro["emprestado_por"] else "")
-                    )
-            if found == False:
-                print("Livro não encontrado!")
-        case _:
-            print("Opção inválida!")
-            print()
+
+    try:
+        option = int(input(
+            "\n(Pesquisa selecionada!) Como deseja procurar?\n1) Por ID\n2) Por Título\n3) Por Género\n-> "
+        ))
+    except ValueError:
+        print("Opção inválida! Introduza um número.")
+        return
+
+    if option == 1:
+        try:
+            response = int(input("\n(Pesquisa por ID selecionada!)\n Qual é o id? -> "))
+            id = response
+        except ValueError:
+            print("\nID inválido. Introduza um número.")
+            return  # Sai da função se o input for inválido
+        print()
+        found = False
+        for livro in livros:
+            if livro.get('id') == id:
+                print(
+                    f"Livro encontrado! -> [ID {livro['id']}] “{livro['titulo']}” – {livro['autor']} ({livro['ano']}) [{livro['genero']}] → {livro['estado']}"
+                    + (f" a → {livro['emprestado_por']}" if livro["emprestado_por"] else "")
+                )
+                found = True
+                break
+        if found == False:
+            print(f"Livro não encontrado con o id: {response}!")
+
+    elif option == 2:
+        response = input("\n(Pesquisa por Título selecionada!)\n Qual é o nome do livro? -> ")
+        title = response.strip().lower()
+        print()
+        found = False
+        for livro in livros:
+            if livro.get('titulo').strip().lower() == title:
+                found = True
+                print(
+                    f"Livro encontrado! -> [ID {livro['id']}] “{livro['titulo']}” – {livro['autor']} ({livro['ano']}) [{livro['genero']}] → {livro['estado']}"
+                    + (f" a → {livro['emprestado_por']}" if livro["emprestado_por"] else "")
+                )
+        if found == False:
+            print(f"Livro não encontrado con o título: {response}!")
+
+    elif option == 3:
+        response = input("\n(Pesquisa por Género selecionada!)\n Qual é o género do livro? -> ")
+        gender = response.strip().lower()
+        print()
+        found = False
+        for livro in livros:
+            if livro.get('genero').strip().lower() == gender:
+                found = True
+                print(
+                    f"Livro encontrado! -> [ID {livro['id']}] “{livro['titulo']}” – {livro['autor']} ({livro['ano']}) [{livro['genero']}] → {livro['estado']}"
+                    + (f" a → {livro['emprestado_por']}" if livro["emprestado_por"] else "")
+                )
+        if found == False:
+            print(f"Livro não encontrado con o género: {response}!")
+    else:
+        print("Opção inválida!")
+        print()
 
 def borrow():
     """

@@ -1,5 +1,8 @@
 """ Este ficheiro contém todos os livros e os seus respectivos atributos. """
 
+#TODO O valor "ano" destes dados não está 100% corretamente formatado em certas obras (ex:  ("id": 49, "ano": "c. século V a.C.") )
+#TODO O id começa no index 1 e talvez deveria começar no 0.
+
 catalogo = [
   {"id": 1, "titulo": "Os Três Mosqueteiros", "autor": "Alexandre Dumas", "ano": 1844, "genero": "Aventura", "estado": "DISPONÍVEL", "emprestado_por": None, "cc_emprestimo": None},
   {"id": 2, "titulo": "Ben-Hur", "autor": "Lew Wallace", "ano": 1880, "genero": "Histórico", "estado": "DISPONÍVEL", "emprestado_por": None, "cc_emprestimo": None},
