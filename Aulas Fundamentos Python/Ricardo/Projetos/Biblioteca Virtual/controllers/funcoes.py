@@ -78,7 +78,7 @@ def show_all_books():
         # TODO: Se mudar o index acrescentar id+1
         print(
             f"[ID {livro['id']}] “{livro['titulo']}” – {livro['autor']} ({livro['ano']}) [{livro['genero']}] → {livro['estado']}"
-            + (f" a → {livro['emprestado_por']}" if livro["emprestado_por"] else "")
+            + (f" por → {livro['emprestado_por']}" if livro["emprestado_por"] else "")
         )
 
 
@@ -117,7 +117,7 @@ def searches():
                 print(
                     f"Livro encontrado! -> [ID {livro['id']}] “{livro['titulo']}” – {livro['autor']} ({livro['ano']}) [{livro['genero']}] → {livro['estado']}"
                     + (
-                        f" a → {livro['emprestado_por']}"
+                        f" por → {livro['emprestado_por']}"
                         if livro["emprestado_por"]
                         else ""
                     )
@@ -125,7 +125,7 @@ def searches():
                 found = True
                 break
         if found == False:
-            print(f"Livro não encontrado con o id: {response}!")
+            print(f"Livro não encontrado com o id: {response}!")
 
     elif option == 2:
         response = input(
@@ -140,7 +140,7 @@ def searches():
                 print(
                     f"Livro encontrado! -> [ID {livro['id']}] “{livro['titulo']}” – {livro['autor']} ({livro['ano']}) [{livro['genero']}] → {livro['estado']}"
                     + (
-                        f" a → {livro['emprestado_por']}"
+                        f" por → {livro['emprestado_por']}"
                         if livro["emprestado_por"]
                         else ""
                     )
@@ -161,7 +161,7 @@ def searches():
                 print(
                     f"Livro encontrado! -> [ID {livro['id']}] “{livro['titulo']}” – {livro['autor']} ({livro['ano']}) [{livro['genero']}] → {livro['estado']}"
                     + (
-                        f" a → {livro['emprestado_por']}"
+                        f" por → {livro['emprestado_por']}"
                         if livro["emprestado_por"]
                         else ""
                     )
@@ -199,7 +199,7 @@ def borrow():
             found = True
             print(
                 f"Livro encontrado! -> [ID {livro['id']}] “{livro['titulo']}” – {livro['autor']} ({livro['ano']}) [{livro['genero']}] → {livro['estado']}"
-                + (f" a → {livro['emprestado_por']}" if livro["emprestado_por"] else "")
+                + (f" por → {livro['emprestado_por']}" if livro["emprestado_por"] else "")
             )
             if livro["estado"] == "DISPONÍVEL":
                 print("Livro disponível para empréstimo.")
@@ -233,14 +233,15 @@ def return_book():
         id = int(input("Qual é o id? -> "))
     except ValueError:
         print("ID inválido. Introduza um número.")
-        nome = input("Qual é o seu nome? -> ").strip()
+    else:
+        nome = input("Qual é o seu nome? -> ").strip().lower()
         cc = input("Qual é o número do seu cartão de cidadão? -> ").strip()
         for livro in livros:
             if livro["id"] == id:
                 if (
                     livro["estado"] == "EMPRESTADO"
-                    and livro["emprestado_por"] == nome
-                    and livro["cc_emprestimo"] == cc
+                    and livro["emprestado_por"].strip().lower() == nome
+                    and livro["cc_emprestimo"].strip() == cc
                 ):
                     livro["estado"] = "DISPONÍVEL"
                     livro["emprestado_por"] = None
