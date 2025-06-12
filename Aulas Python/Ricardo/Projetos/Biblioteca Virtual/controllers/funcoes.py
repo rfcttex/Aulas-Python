@@ -16,10 +16,10 @@ def welcome():
     -> Exibe uma mensagem de boas-vindas ao utilizador.
 
     Param:
-    Nenhum.
+    None.
 
     Return:
-    Nenhum.
+    None.
     """
     print()
     print(f"\nBem-vindo à Biblioteca Virtual!!!")
@@ -34,7 +34,7 @@ def menu():
 
     Return:
     opcao (int | None):
-        - (int) Se for um número inteiro representando a opção escolhida.
+        - (int) Se for um número inteiro representando a opção escolhida
         - (None) Se o utilizador não inserir uma opção válida.
     """
     print("\n--- Main Menu ---")
@@ -78,25 +78,26 @@ def show_all_books():
         # TODO: Se mudar o index acrescentar id+1
         print(
             f"[ID {livro['id']}] “{livro['titulo']}” – {livro['autor']} ({livro['ano']}) [{livro['genero']}] → {livro['estado']}"
-            + (f" por → {livro['emprestado_por']}" if livro["emprestado_por"] else "")
+            + (f" a → {livro['emprestado_por']}" if livro["emprestado_por"] else "")
         )
 
 
 def searches():
-    """    
+    """
     -> Permite procurar livros com base em critérios definidos (ex: título, autor).
 
     Param:
-    Nenhum.
+    None.
 
     Return:
-    Nenhum."""
+    None."""
     from data.catalogo import catalogo as livros
 
     try:
         option = int(
             input(
-                "\n(Pesquisa selecionada!) Como deseja procurar?\n1) Por ID\n2) Por Título\n3) Por Género\n-> ")
+                "\n(Pesquisa selecionada!) Como deseja procurar?\n1) Por ID\n2) Por Título\n3) Por Género\n-> "
+            )
         )
     except ValueError:
         print("Opção inválida! Introduza um número.")
@@ -117,7 +118,7 @@ def searches():
                 print(
                     f"Livro encontrado! -> [ID {livro['id']}] “{livro['titulo']}” – {livro['autor']} ({livro['ano']}) [{livro['genero']}] → {livro['estado']}"
                     + (
-                        f" por → {livro['emprestado_por']}"
+                        f" a → {livro['emprestado_por']}"
                         if livro["emprestado_por"]
                         else ""
                     )
@@ -125,7 +126,7 @@ def searches():
                 found = True
                 break
         if found == False:
-            print(f"Livro não encontrado com o id: {response}!")
+            print(f"Livro não encontrado con o id: {response}!")
 
     elif option == 2:
         response = input(
@@ -140,7 +141,7 @@ def searches():
                 print(
                     f"Livro encontrado! -> [ID {livro['id']}] “{livro['titulo']}” – {livro['autor']} ({livro['ano']}) [{livro['genero']}] → {livro['estado']}"
                     + (
-                        f" por → {livro['emprestado_por']}"
+                        f" a → {livro['emprestado_por']}"
                         if livro["emprestado_por"]
                         else ""
                     )
@@ -161,7 +162,7 @@ def searches():
                 print(
                     f"Livro encontrado! -> [ID {livro['id']}] “{livro['titulo']}” – {livro['autor']} ({livro['ano']}) [{livro['genero']}] → {livro['estado']}"
                     + (
-                        f" por → {livro['emprestado_por']}"
+                        f" a → {livro['emprestado_por']}"
                         if livro["emprestado_por"]
                         else ""
                     )
@@ -178,10 +179,10 @@ def borrow():
     -> Realiza o processo de empréstimo de um livro para o utilizador.
 
     Param:
-    Nenhum.
+    None.
 
     Return:
-    Nenhum.
+    None.
     """
     from data.catalogo import catalogo as livros
 
@@ -199,7 +200,7 @@ def borrow():
             found = True
             print(
                 f"Livro encontrado! -> [ID {livro['id']}] “{livro['titulo']}” – {livro['autor']} ({livro['ano']}) [{livro['genero']}] → {livro['estado']}"
-                + (f" por → {livro['emprestado_por']}" if livro["emprestado_por"] else "")
+                + (f" a → {livro['emprestado_por']}" if livro["emprestado_por"] else "")
             )
             if livro["estado"] == "DISPONÍVEL":
                 print("Livro disponível para empréstimo.")
@@ -222,10 +223,10 @@ def return_book():
     -> Registra a devolução de um livro previamente emprestado.
 
     Param:
-    Nenhum.
+    None.
 
     Return:
-    Nenhum.
+    None.
     """
     from data.catalogo import catalogo as livros
 
@@ -233,15 +234,14 @@ def return_book():
         id = int(input("Qual é o id? -> "))
     except ValueError:
         print("ID inválido. Introduza um número.")
-    else:
-        nome = input("Qual é o seu nome? -> ").strip().lower()
+        nome = input("Qual é o seu nome? -> ").strip()
         cc = input("Qual é o número do seu cartão de cidadão? -> ").strip()
         for livro in livros:
             if livro["id"] == id:
                 if (
                     livro["estado"] == "EMPRESTADO"
-                    and livro["emprestado_por"].strip().lower() == nome
-                    and livro["cc_emprestimo"].strip() == cc
+                    and livro["emprestado_por"] == nome
+                    and livro["cc_emprestimo"] == cc
                 ):
                     livro["estado"] = "DISPONÍVEL"
                     livro["emprestado_por"] = None
