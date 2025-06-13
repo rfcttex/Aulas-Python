@@ -1,6 +1,7 @@
 def saudacao():
     print("Olá, bem-vindo ao Python!")
-    
+
+
 saudacao()
 
 
@@ -12,12 +13,14 @@ def saudacaoIdioma(nome, idioma):
     else:
         print(f"Saudação não disponível para o idioma '{idioma}'.")
 
-saudacaoIdioma("João","en")
+
+saudacaoIdioma("João", "en")
+
 
 def soma(*nums):
-    soma = 0 
+    soma = 0
     for valor in nums:
-      soma += valor
+        soma += valor
     print(soma)
 
 
