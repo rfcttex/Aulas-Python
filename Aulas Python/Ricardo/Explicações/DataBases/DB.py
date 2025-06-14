@@ -23,13 +23,13 @@ CREATE TABLE IF NOT EXISTS alunos  (
 cursor.execute(query)
 
 # --- Inserção de dados (descomentando este bloco, pode inserir alunos manualmente) ---
-# for i in range(0, 5, 1):
-#     nome = input(f"Digite o nome do aluno {i+1}: ")
-#     idade = int(input(f"Digite a idade do aluno {i+1}: "))
-#     disciplina = input(f"Digite a disciplina do aluno {i+1}: ")
-#     cursor.execute(
-#         f"INSERT INTO {nomeTabela} (nome, idade, disciplina) VALUES (?, ?, ?)", (nome, idade, disciplina))
-# conn.commit()
+for i in range(0, 5, 1):
+    nome = input(f"Digite o nome do aluno {i+1}: ")
+    idade = int(input(f"Digite a idade do aluno {i+1}: "))
+    disciplina = input(f"Digite a disciplina do aluno {i+1}: ")
+    cursor.execute(
+        f"INSERT INTO {nomeTabela} (nome, idade, disciplina) VALUES (?, ?, ?)", (nome, idade, disciplina))
+conn.commit()
 
 # Recuperar e exibir todos os alunos antes do update
 query = f"SELECT * FROM {nomeTabela}"
