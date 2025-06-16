@@ -200,18 +200,17 @@ def update_prods():
         print(f"stock: {row[3]}")
         print(f"---------------------")
 
-    numberToAdd = int(input(f"Quantos productos deseja inserir? "))
+    updateID = int(input(f"\nQual é o ID do producto que deseja alterar?: "))
+    newNome = input(f"\nQuantal o novo nome do producto que deseja alterar?: ")
+    newpreço = float(
+        input(f"\nQuantal o novo preço do producto que deseja alterar?: "))
+    newStock = int(
+        input(f"\nQuantal o novo stock do producto que deseja alterar?: "))
 
-    for i in range(numberToAdd):
-        nome = input(f"Qual é o nome do {i+1}º producto que deseja inserir? ")
-        preco = float(
-            input(f"Qual é o preço do {i+1}º producto que deseja inserir? "))
-        stock = int(input(f"Quanto deste producto deseja inserir? "))
-        query = (
-            f"INSERT INTO {nomeTabela} (nome,preço,stock) VALUES (?,?,?)"
-        )
-        cursor.execute(query, (nome, preco, stock))
-        conn.commit()
+    updateQuery = f"UPDATE {nomeTabela} SET nome = ?,preço = ?,stock = ? WHERE id = ?"
+
+    cursor.execute(updateQuery, (newNome, newpreço, newStock, updateID))
+    conn.commit()
 
     # 4 Fechar a conexão com o banco de dados
     conn.close()
