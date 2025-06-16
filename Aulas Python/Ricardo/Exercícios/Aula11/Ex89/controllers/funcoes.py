@@ -78,7 +78,7 @@ def show_all_prods():
     CREATE TABLE IF NOT EXISTS produtos  (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT NOT NULL,
-        preço INTEGER,
+        preço REAL,
         stock TEXT NOT NULL    
         )
     """
@@ -129,7 +129,7 @@ def create_prods():
     CREATE TABLE IF NOT EXISTS produtos  (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT NOT NULL,
-        preço INTEGER,
+        preço REAL,
         stock TEXT NOT NULL    
         )
     """
@@ -181,7 +181,7 @@ def update_prods():
     CREATE TABLE IF NOT EXISTS produtos  (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT NOT NULL,
-        preço INTEGER,
+        preço REAL,
         stock TEXT NOT NULL    
         )
     """
