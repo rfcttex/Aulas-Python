@@ -98,3 +98,28 @@ Considere agora os seguintes relacionamentos entre entidades no universo da empr
 - **Cardinalidade:** M:N (um evento pode ocupar vários espaços; um espaço pode acolher vários eventos)
 - **Atributos do relacionamento:** data início, data fim
 - **Participação:** Evento: total | Espaço: parcial (pode não ter evento)
+
+--------------------------------------------------------------------------------
+Exercício 5
+Considere os seguintes requisitos para uma base de dados de uma rede social simples
+"Livro das Caras" em que:
+ Um utilizador é caracterizado por um identificador de "login" único, nome e email.
+ Cada utilizador pode ser seguidor de outros em que tenha interesse de
+acompanhar atividades.
+ Um utilizador escreve "posts", em que cada "post" é caracterizado por um
+identificador único, um texto, e um conjunto de "hashtags" (etiquetas de texto).
+Um "post" tem como autor um único utilizador.
+ Os utilizadores podem assinalar que apreciaram "posts" com "likes".
+ Os utilizadores podem escrever comentários a "posts". Um comentário tem um
+número de ordem e um texto associado, sendo o número de ordem de um
+comentário (apenas) único por "post", isto é, pode-se repetir para ''posts''
+diferentes. Tal como um "post", um comentário tem sempre a um autor único.
+ Podem haver utilizadores sem qualquer participação em termos de seguimento de
+outros / seguidores / "posts" / comentários / "likes".
+Dicas:
+ Será conveniente modelar comentários usando uma entidade-tipo fraca,
+tendo como entidade-tipo identificadora a usada para "posts".
+ A reação a posts por comentários poderá ser modelada por um
+relacionamento entre utilizadores e comentários.
+
+Defina um modelo para a base de dados na forma de um diagrama ER.
