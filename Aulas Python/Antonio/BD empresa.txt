@@ -1,0 +1,118 @@
+----------------------------------------
+ENTIDADE: FUNCIONÁRIO
+----------------------------------------
+Atributos:
+- nºCC (Número do Cartão de Cidadão) [chave primária]
+- Nome
+- Email (opcional)
+- Data de Nascimento
+- Salário
+- Funcionário supervisor (opcional, referência a outro funcionário)
+- Departamento (referência ao departamento a que pertence)
+
+Relacionamentos:
+- Pode ser gestor de apenas um departamento.
+- Pode ter um supervisor (opcional).
+- Pode trabalhar em um ou mais projetos.
+- Para cada projeto, é necessário identificar o número de horas semanais dedicadas.
+
+----------------------------------------
+ENTIDADE: DEPARTAMENTO
+----------------------------------------
+Atributos:
+- Nome (único) [chave primária]
+- Localizações (uma ou mais moradas associadas)
+- Funcionário gestor (referência a um funcionário)
+- Funcionários (um ou mais funcionários que trabalham no departamento)
+
+Relacionamentos:
+- Deve ter pelo menos um funcionário.
+- Pode ter várias localizações.
+- Pode existir sem projetos associados.
+- Controla projetos.
+
+----------------------------------------
+ENTIDADE: PROJETO
+----------------------------------------
+Atributos:
+- Nome (único)
+- Data de início
+- Data de conclusão
+- Departamento que controla o projeto
+- Funcionário diretor do projeto
+
+Relacionamentos:
+- Cada projeto tem sempre funcionários que trabalham nele (além do diretor).
+- Funcionários dedicam horas semanais a cada projeto.
+
+----------------------------------------
+REGRAS E OBSERVAÇÕES
+----------------------------------------
+- Um funcionário pode ser gestor de apenas um departamento.
+- Um departamento deve ter pelo menos um funcionário.
+- Um funcionário pode ter um supervisor (opcional).
+- Um departamento pode ter várias localizações (moradas).
+- Podem existir departamentos sem projetos associados.
+- Um funcionário pode trabalhar em vários projetos, indicando as horas semanais dedicadas
+
+
+
+----------------------------------------
+Links & Code
+----------------------------------------
+- Mermaid link: https://www.mermaidchart.com/app/projects/fa978c98-6cb9-4e58-90db-0b02a9186fb8/diagrams/ec3d3d8d-7840-4e30-90f5-5c730165e21d/version/v0.1/edit
+- Diagram.io link: https://dbdiagram.io/d
+- Diagram.io code:
+
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table funcionarios {
+  num_cc int [primary key, note: "Número do Cartão de Cidadão"]
+  nome varchar
+  email varchar [note: "Opcional"]
+  data_nascimento date
+  salario float
+  supervisor_num_cc int [note: "Referência a outro funcionário (opcional)"]
+  departamento_nome varchar [note: "Referência ao departamento"]
+}
+
+Table departamentos {
+  nome varchar [primary key, note: "Nome único do departamento"]
+  funcionario_gerente_num_cc int [note: "Funcionário gestor"]
+}
+
+Table localizacoes {
+  id int [primary key]
+  morada varchar
+  departamento_nome varchar [not null, note: "FK para Departamento.nome"]
+}
+
+Table projetos {
+  nome varchar [primary key, note: "Nome único"]
+  data_inicio date
+  data_conclusao date
+  departamento_nome varchar [not null, note: "Departamento que controla o projeto"]
+  diretor_num_cc int [not null, note: "Funcionário diretor do projeto"]
+}
+
+Table trabalha_em {
+  funcionario_num_cc int [not null]
+  projeto_nome varchar [not null]
+  horas_semanais int
+
+  Indexes {
+    (funcionario_num_cc, projeto_nome) [pk]
+  }
+}
+
+// Relações
+
+Ref: funcionarios.supervisor_num_cc > funcionarios.num_cc // Auto-relacionamento (supervisor)
+Ref: funcionarios.departamento_nome > departamentos.nome
+Ref: departamentos.funcionario_gerente_num_cc > funcionarios.num_cc
+Ref: localizacoes.departamento_nome > departamentos.nome
+Ref: projetos.departamento_nome > departamentos.nome
+Ref: projetos.diretor_num_cc > funcionarios.num_cc
+Ref: trabalha_em.funcionario_num_cc > funcionarios.num_cc
+Ref: trabalha_em.projeto_nome > projetos.nome
