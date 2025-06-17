@@ -14,7 +14,7 @@ class ContaBancaria:
         self.saldo += montante
 
 
-minhaConta = ContaBancaria("João", 250000, 5000)
+minhaConta = ContaBancaria("Joãos", 250000, 5000)
 
 minhaConta.showSaldo()
 minhaConta.depositar(5)
