@@ -1,67 +1,62 @@
 Exercício 1
-Considere a entidade-tipo ALUNO:
-Considere os seguintes dados para (instâncias de) ALUNO, apresentados de forma
-tabelada, e indique o que há de errado com cada um dos valores a negrito apresentados.
 
------------------------------------------------------------------------------------------------
+Considere a entidade-tipo ALUNO:
+
+Considere os seguintes dados para (instâncias de) ALUNO, apresentados de forma tabelada, e indique o que há de errado com cada um dos valores a negrito apresentados.
+
+Resposta:
+1 - O numMec para a Maria Silveira partilha o mesmo identificador unico que a instancia anterior
+2 - O sexo da instancia da Maria Silveira não pode ser NULL
+3 - O campo idade tem o valor 64 o que não não é coerente com com a DataNasc não sendo assim derivada da mesma.
+4 - A Morada não se trata de um campo composto.
+
+--------------------------------------------------------------------------------
 
 Exercício 2
+
 Tenha em conta os relacionamentos para o universo (simplificado) de uma faculdade:
 
-Justifique se o modelo de BD apresentado é ou não consistente ou não com os seguintes
-dados:
- O Dep. de Ciência de Computadores tem como directores o Prof. Alípio Jorge e o
-Prof. Eduardo Marques.
- O Dep. Física não tem um diretor definido.
- O Dep. de Ciências das Coisas tem como diretor o Prof. António das Cenas.
- O Dep. de Ciências das Coisas não tem professores.
- O Prof. António das Cenas trabalha nos Dep. de Ciências das Coisas e Dep. Física.
- O Prof. Eduardo Marques trabalha no Dep. de Ciência de Computadores.
- O Dep. de Ciência das Coisas não é responsável por qualquer curso.
- Os cursos de Licenciatura em Ciência de Computadores e Mestrado em
-Segurança Informática são da responsabilidade do Dep. Ciências dos
-Computadores.
- O curso de Licenciatura em Coisas é da responsabilidade dos Dep. Física e do
-Dep. Ciência das Coisas.
- O curso de Mestrado em Inteligência Artificial não teve ainda alunos inscritos.
- O aluno José Silva esteve inscrito na Licenciatura de Ciência de Computadores de
-2015 a 2019, e está inscrito desde 2020 no Mestrado em Segurança Informática.
- A aluna Maria Silva não está ainda inscrita em nenhum curso.
+Justifique se o modelo de BD apresentado é ou não consistente com os seguintes dados:
 
------------------------------------------------------------------------------------------------
+- O Dep. de Ciência de Computadores tem como directores o Prof. Alípio Jorge e o Prof. Eduardo Marques. X R:
+- O Dep. Física não tem um diretor definido.
+- O Dep. de Ciências das Coisas tem como diretor o Prof. António das Cenas.
+- O Dep. de Ciências das Coisas não tem professores.
+- O Prof. António das Cenas trabalha nos Dep. de Ciências das Coisas e Dep. Física.
+- O Prof. Eduardo Marques trabalha no Dep. de Ciência de Computadores.
+- O Dep. de Ciência das Coisas não é responsável por qualquer curso.
+- Os cursos de Licenciatura em Ciência de Computadores e Mestrado em Segurança Informática são da responsabilidade do Dep. Ciências dos Computadores.
+- O curso de Licenciatura em Coisas é da responsabilidade dos Dep. Física e do Dep. Ciência das Coisas.
+- O curso de Mestrado em Inteligência Artificial não teve ainda alunos inscritos.
+- O aluno José Silva esteve inscrito na Licenciatura de Ciência de Computadores de 2015 a 2019, e está inscrito desde 2020 no Mestrado em Segurança Informática.
+- A aluna Maria Silva não está ainda inscrita em nenhum curso.
+
+--------------------------------------------------------------------------------
 
 Exercício 3
-Considere um modelo simplificado para o universo de uma empresa de organização de
-eventos. As entidades-tipo em causa e respetivos atributos consistem em:
- FUNCIONÁRIO da empresa: no CC, nome, data de nascimento, idade, cargo,
-números de telefone para contacto, e endereço de email opcional.
- ESPAÇO para a realização de eventos com código único, nome, e morada
-expressa em termos de rua, no na rua, andar opcional, localidade e código postal.
- EVENTO organizado pela empresa: com código único, nome, data de início, e data
-de fim.
-Apresente uma descrição das entidades-tipo usando a sintaxe textual e visual do modelo
-ER. Na descrição de cada entidade-tipo tenha em conta:
- quais são os atributos chave;
- e a classificação de todos os atributos quanto ao tipo de domínio
-(simples/composto, valor-único/multi-valor, base/derivado, definido/opcional).
 
------------------------------------------------------------------------------------------------
+Considere um modelo simplificado para o universo de uma empresa de organização de eventos. As entidades-tipo em causa e respetivos atributos consistem em:
+
+- FUNCIONÁRIO da empresa: no CC, nome, data de nascimento, idade, cargo, números de telefone para contacto, e endereço de email opcional.
+- ESPAÇO para a realização de eventos: código único, nome, morada (rua, nº na rua, andar opcional, localidade, código postal).
+- EVENTO organizado pela empresa: código único, nome, data de início, data de fim.
+
+Apresente uma descrição das entidades-tipo usando a sintaxe textual e visual do modelo ER. Na descrição de cada entidade-tipo tenha em conta:
+- Quais são os atributos chave;
+- Classificação de todos os atributos quanto ao tipo de domínio (simples/composto, valor-único/multi-valor, base/derivado, definido/opcional).
+
+--------------------------------------------------------------------------------
 
 Exercício 4
-Considere agora os seguintes relacionamentos entre entidades no universo da empresa
-de gestão de eventos:
- Cada funcionário trabalha apenas num único espaço de eventos. Um espaço de
-eventos tem pelo menos um funcionário que trabalha nele.
- Cada espaço de eventos é gerido por um dos funcionários que nele trabalham.
- Um funcionário poderá ter um supervisor e/ou ser supervisor de vários outros
-funcionários.
- Cada evento tem necessariamente lugar em um ou mais espaços, tendo cada
-alocação de espaço a evento uma data de início e uma data de fim de ocupação.
-Poderá haver espaços sem eventos associados e outros a acolher múltiplos
-eventos.
+
+Considere agora os seguintes relacionamentos entre entidades no universo da empresa de gestão de eventos:
+
+- Cada funcionário trabalha apenas num único espaço de eventos. Um espaço de eventos tem pelo menos um funcionário que trabalha nele.
+- Cada espaço de eventos é gerido por um dos funcionários que nele trabalham.
+- Um funcionário poderá ter um supervisor e/ou ser supervisor de vários outros funcionários.
+- Cada evento tem necessariamente lugar em um ou mais espaços, tendo cada alocação de espaço a evento uma data de início e uma data de fim de ocupação. Poderá haver espaços sem eventos associados e outros a acolher múltiplos eventos.
 
 Tendo em conta estes requisitos:
- Identifique os relacionamentos implícitos entre entidades-tipo.
- Para cada relacionamento identifique as restrições de cardinalidade (1:1, 1:N,
-N:1, M:N) e participação (parcial/total).
- Desenhe um diagrama ER para os relacionamentos.
+- Identifique os relacionamentos implícitos entre entidades-tipo.
+- Para cada relacionamento identifique as restrições de cardinalidade (1:1, 1:N, N:1, M:N) e participação (parcial/total).
+- Desenhe um diagrama ER para os
