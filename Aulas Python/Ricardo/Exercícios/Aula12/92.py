@@ -7,14 +7,14 @@ class Produto:
     def showStock(self):
         print(f"O produto {self.nome} tem {self.stock} unidades em stock.")
 
-    def incrementador(self):
-        self.stock += 1
+    def incrementador(self, value):
+        self.stock += value
 
 
 playstation = Produto("Playstation", 1, 1)
 
 playstation.showStock()
 
-playstation.incrementador()
+playstation.incrementador(5)
 
 playstation.showStock()
