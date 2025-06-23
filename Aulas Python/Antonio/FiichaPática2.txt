@@ -1,0 +1,47 @@
+----------------------------------------
+ENTIDADE: Fornecedor
+----------------------------------------
+Atributos:
+- CódigoFornecedor (PK)
+- Nome
+- Endereço
+- Telefone
+- Fax
+
+----------------------------------------
+ENTIDADE: Mercadoria
+----------------------------------------
+Atributos:
+- CódigoMercadoria (PK)
+- Nome
+- UnidadeMedida
+
+----------------------------------------
+ENTIDADE: Contrato
+----------------------------------------
+Atributos:
+- NúmeroContrato (PK)
+- DataAssinatura
+- PrazoValidade
+- Moeda
+- ValorTotal
+- CódigoFornecedor (FK)
+
+----------------------------------------
+ENTIDADE: Transporte
+----------------------------------------
+Atributos:
+- NúmeroTransporte (PK)
+- Tipo
+- DataPartida
+- DataChegada
+- NúmeroContrato (FK)
+
+----------------------------------------
+ENTIDADE ASSOCIATIVA: MercadoriaContrato
+(Relaciona Contrato e Mercadoria)
+----------------------------------------
+Atributos:
+- NúmeroContrato (PK, FK)
+- CódigoMercadoria (PK, FK)
+-
