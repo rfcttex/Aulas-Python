@@ -27,3 +27,7 @@ class Produto:
     @stock.setter
     def stock(self, stock):
         self.__stock = abs(stock)
+
+
+def mostrar_Stock():
+    pass
