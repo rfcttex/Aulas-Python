@@ -1,4 +1,21 @@
 class Círculo:
+    """
+    Classe Círculo representa um círculo geométrico com operações para manipular seu raio e calcular perímetro e área.
+    Atributos:
+        __raio (float): O raio do círculo.
+    Métodos:
+        __init__(raio):
+            Inicializa o círculo com um raio especificado.
+        set_raio(newRaio):
+            Define um novo valor para o raio do círculo.
+        get_raio():
+            Retorna o valor atual do raio do círculo.
+        get_perimetro():
+            Calcula e retorna o perímetro (circunferência) do círculo.
+        get_area():
+            Calcula e retorna a área do círculo.
+    """
+
     def __init__(self, raio):
         self.__raio = raio
 

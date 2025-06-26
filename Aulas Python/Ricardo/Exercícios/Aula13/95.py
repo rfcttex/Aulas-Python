@@ -1,4 +1,17 @@
 class ContaBancaria:
+    """
+        Representa uma conta bancária com informações básicas e métodos de acesso.
+
+        Atributos:
+            __nib (str): Número de Identificação Bancária da conta.
+            __titular (str): Nome do titular da conta.
+            __saldo (float): Saldo atual da conta.
+            __limite (float): Limite de crédito da conta.
+
+        Métodos:
+            Fornece getters e setters para todos os atributos privados da conta bancária.
+        """
+
     def __init__(self, nib, titular, saldo, limite):
         self.__nib = nib
         self.__titular = titular
