@@ -1,7 +1,3 @@
-# Default ignored files
-/shelf/
-/workspace.xml
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -88,8 +84,7 @@ venv.bak/
 .idea/
 
 # Local files
+**/pdfs/
 *.log
 *.tmp
 *.bak
-*.swp
-*~

@@ -1,0 +1,152 @@
+--------------------------------------------------------------------------------
+Exercício 1
+
+**Resposta:**
+  1. O numMec para a Maria Silveira partilha o mesmo identificador único que a instância anterior.
+  2. O sexo da instância da Maria Silveira não pode ser NULL.
+  3. O campo idade tem o valor 64, o que não é coerente com a DataNasc, não sendo assim derivada da mesma.
+  4. A Morada não se trata de um campo composto.
+
+--------------------------------------------------------------------------------
+Exercício 2
+
+  - O Dep. de Ciência de Computadores tem como directores o Prof. Alípio Jorge e o Prof. Eduardo Marques. ❌ Inconsistente
+    Justificação: O modelo só permite um diretor por departamento (relação DIRETOR_DE é 1:1 do lado do departamento).
+
+  - O Dep. Física não tem um diretor definido. ❌ Inconsistente
+    Justificação: O modelo exige que cada departamento tenha exatamente um diretor.
+
+  - O Dep. de Ciências das Coisas tem como diretor o Prof. António das Cenas. ✅ Consistente
+    Justificação: Um único professor como diretor está de acordo com o modelo.
+
+  - O Dep. de Ciências das Coisas não tem professores. ✅ Consistente
+    Justificação: Não há obrigatoriedade no modelo para que um departamento tenha professores associados.
+
+  - O Prof. António das Cenas trabalha nos Dep. de Ciências das Coisas e Dep. Física. ✅ Consistente
+    Justificação: A relação TRABALHA_EM é N:M, permitindo múltiplos departamentos por professor.
+
+  - O Prof. Eduardo Marques trabalha no Dep. de Ciência de Computadores. ✅ Consistente
+    Justificação: Permitido pela relação N:M entre PROFESSOR e DEPARTAMENTO.
+
+  - O Dep. de Ciência das Coisas não é responsável por qualquer curso. ✅ Consistente
+    Justificação: A relação RESPONSAVEL_POR é opcional para o departamento.
+
+  - Os cursos de Licenciatura em Ciência de Computadores e Mestrado em Segurança Informática são da responsabilidade do Dep. Ciências dos Computadores. ✅ Consistente
+    Justificação: O modelo permite que um departamento seja responsável por vários cursos.
+
+  - O curso de Licenciatura em Coisas é da responsabilidade dos Dep. Física e do Dep. Ciência das Coisas. ❌ Inconsistente
+    Justificação: Cada curso só pode estar associado a um único departamento responsável (cardinalidade 1 na relação RESPONSAVEL_POR do lado do curso).
+
+  - O curso de Mestrado em Inteligência Artificial não teve ainda alunos inscritos. ✅ Consistente
+    Justificação: A inscrição de alunos é opcional no modelo para os cursos.
+
+  - O aluno José Silva esteve inscrito na Licenciatura de Ciência de Computadores de 2015 a 2019, e está inscrito desde 2020 no Mestrado em Segurança Informática. ✅ Consistente
+    Justificação: A relação INSCRITO_EM é N:M com atributos (AnoInsc, AnoConc?), permitindo múltiplas inscrições com datas.
+
+  - A aluna Maria Silva não está ainda inscrita em nenhum curso. ✅ Consistente
+    Justificação: O modelo permite que existam alunos sem estarem inscritos em cursos.
+--------------------------------------------------------------------------------
+Exercício 3
+
+1. FUNCIONÁRIO
+  nº CC (PK, simples, valor único, base, definido)
+  nome (simples, valor único, base, definido)
+  data de nascimento (simples, valor único, base, definido)
+  idade (simples, valor único, derivado de data de nascimento)
+  cargo (simples, valor único, base, definido)
+  números de telefone (simples, multi-valor, base, opcional)
+  email (simples, valor único, base, opcional)
+
+2. ESPAÇO
+  código (PK, simples, valor único, base, definido)
+  nome (simples, valor único, base, definido)
+  morada (composto: rua, número, andar (opcional), localidade, código postal)
+
+3. EVENTO
+  código (PK, simples, valor único, base, definido)
+  nome (simples, valor único, base, definido)
+  data de início (simples, valor único, base, definido)
+  data de fim (simples, valor único, base, definido)
+
+--------------------------------------------------------------------------------
+Exercício 4
+
+TRABALHA_EM (FUNCIONÁRIO → ESPAÇO)
+  - **Cardinalidade:** N:1 (cada funcionário trabalha em um espaço; cada espaço tem vários funcionários)
+  - **Participação:** Funcionário: total | Espaço: parcial
+
+SUPERVISIONA (FUNCIONÁRIO → ESPAÇO)
+  - **Cardinalidade:** 1:1 (um funcionário gere um espaço; um espaço só pode ser gerido por um funcionário que nele trabalhe)
+  - **Participação:** Espaço: total | Funcionário: parcial (nem todos são gestores)
+  - **Nota:** Possivelmente um sub-relacionamento ou restrição sobre Trabalha_em.
+
+Supervisiona (auto-relacionamento FUNCIONÁRIO)
+  - **Cardinalidade:** 1:N (um supervisor pode supervisionar vários; cada supervisionado tem no máximo um supervisor)
+  - **Participação:** Supervisor: parcial | Supervisionado: parcial
+
+OCORRE_EM (EVENTO ↔ ESPAÇO)
+  - **Cardinalidade:** M:N (um evento pode ocupar vários espaços; um espaço pode acolher vários eventos)
+  - **Atributos do relacionamento:** data início, data fim
+  - **Participação:** Evento: total | Espaço: parcial (pode não ter evento)
+
+--------------------------------------------------------------------------------
+Exercício 5
+Considere os seguintes requisitos para uma base de dados de uma rede social simples
+"Livro das Caras" em que:
+...
+
+**Modelo ER (notação textual):**
+
+ENTIDADE: USER  
+  login (PK, simples, valor único, base, definido)  
+  nome (simples, valor único, base, definido)  
+  email (simples, valor único, base, opcional) 
+
+ENTIDADE: POST  
+  - id (PK, simples, valor único, base, definido)  
+  - texto (simples, valor único, base, definido)  
+  - hashtags (multi-valor, base, opcional)  
+  - autor_login (FK → USER.login, base, definido)  
+
+ENTIDADE FRACA: COMENTÁRIO  
+  - post_id (PK parcial, FK → POST.id, base, definido)  
+  - num_ordem (PK parcial, base, definido)  
+  - texto (simples, valor único, base, definido)  
+  - autor_login (FK → USER.login, base, definido)  
+
+ENTIDADE: LIKE  
+  - uSER_login (PK parcial, FK → USER.login, base, definido)  
+  - post_id (PK parcial, FK → POST.id, base, definido)  
+
+RELACIONAMENTO: SEGUE  
+  - seguidor_login (FK → USER.login)  
+  - seguido_login (FK → USER.login)  
+  - (N:M, opcional para ambos os lados)  
+
+**Resumo das relações:**
+- Um USER pode seguir vários outros USERES (N:M, SEGUE).
+- Um USER escreve vários POSTS (1:N, FK em POST).
+- Um POST tem vários COMENTÁRIOS (1:N, entidade fraca COMENTÁRIO).
+- Um USER pode comentar vários POSTS (1:N, FK em COMENTÁRIO).
+- Um USER pode dar LIKE em vários POSTS (N:M, entidade LIKE).
+
+**Visualização ER simplificada:**
+
+USER (login PK, nome, email)  
+│  
+├── escreve ──► POST (id PK, texto, {hashtags}, autor_login FK)  
+│                 │  
+│                 └── tem ──► COMENTÁRIO (post_id PKp, num_ordem PKp, texto, autor_login FK)  
+│  
+├── segue ──► USER (N:M)  
+│  
+├── like ──► POST (N:M, LIKE: uSER_login PKp, post_id PKp)  
+│
+
+**Notas:**
+- COMENTÁRIO é entidade fraca, identificada por (post_id, num_ordem).
+- LIKE pode ser modelado como entidade associativa N:M entre USER e POST.
+- Hashtags são multi-valor em POST.
+- Todos os relacionamentos são opcionais para permitir uSERes sem participação.
+
+--------------------------------------------------------------------------------
