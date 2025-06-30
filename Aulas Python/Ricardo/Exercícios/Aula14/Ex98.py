@@ -1,8 +1,7 @@
 class Produto:
-    def __init__(self, nome, quantidade, stock):
+    def __init__(self, nome, quantidadeStock):
         self.__nome = nome
-        self.__quantidade = quantidade
-        self.__stock = stock
+        self.__quantidadeStock = quantidadeStock
 
     @property
     def nome(self):
@@ -13,21 +12,29 @@ class Produto:
         self.__nome = nome
 
     @property
-    def quantidade(self):
-        return self.__quantidade
+    def quantidadeStock(self):
+        return abs(self.__quantidadeStock)
 
-    @quantidade.setter
-    def quantidade(self, quantidade):
-        self.__quantidade = quantidade
-
-    @property
-    def stock(self):
-        return self.__stock
-
-    @stock.setter
-    def stock(self, stock):
-        self.__stock = abs(stock)
+    @quantidadeStock.setter
+    def quantidadeStock(self, quantidadeStock):
+        self.__quantidadeStock = quantidadeStock
 
 
-def mostrar_Stock():
-    pass
+def mostrar_stock(self):
+    return f"{self.nome}: {self.quantidadeStock}"
+
+
+def adicionar_stock(self):
+    unidades = int(input("Escreva as unidades: "))
+    self.quantidadeStock += unidades
+    print(self.quantidadeStock)
+
+
+produto1 = Produto("Batata", -68)
+
+mostrar_stock(produto1)
+produto1 = Produto("Batata", -68)
+
+print(produto1.mostrar_stock())
+produto1.adicionar_stock()
+print(produto1.mostrar_stock())
