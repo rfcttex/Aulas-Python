@@ -1,0 +1,17 @@
+# Python Escape Sequences:
+
+# \n  - Newline
+# \t  - Horizontal Tab
+# \r  - Carriage Return
+# \\  - Backslash
+# \'  - Single Quote
+# \"  - Double Quote
+# \b  - Backspace
+# \f  - Form Feed
+# \v  - Vertical Tab
+# \a  - Bell (Alert sound)
+# \N{name} - Unicode character by name
+# \uXXXX - Unicode character with 16-bit hex value
+# \UXXXXXXXX - Unicode character with 32-bit hex value
+# \xXX - Character with hex value XX
+# \ooo - Character with octal value ooo
