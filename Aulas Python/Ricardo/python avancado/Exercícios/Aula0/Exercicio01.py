@@ -21,31 +21,33 @@ class ATM:
     def __repr__(self):
         return f"ATM(titular={self.titular}, saldo={self.saldo}, pin={self.pin})"
 
+    def menu():
+        print("\n--- Menu ATM ---")
+        print("[ 1 ] – Depositar")
+        print("[ 2 ] – Levantar")
+        print("[ 3 ] – Transferir")
+        print("[ 4 ] – Comprovativo NIB")
+        print("[ 5 ] – Consultar Saldo")
+        print("[ 6 ] – Consultar Dados")
+        print("[ 7 ] – Sair")
+        while True:
+            try:
+                option = int(input("\nEscolha uma opção: "))
+                if option == 7:
+                    print("\nEncerrando...")
+                    break
+                if 1 <= option < 7:
+                    return option
+                else:
+                    print("\nErro ao selecionar opção. Escolha entre 1 e 7.")
+            except KeyboardInterrupt:
+                print("\nInterrompeu o programa!")
+                return None
+            except ValueError:
+                print("\nInsira um valor válido!")
 
-def menu():
-    print("\n--- Menu ATM ---")
-    print("[ 1 ] – Depoistar")
-    print("[ 2 ] – Levantar")
-    print("[ 3 ] – Transferir")
-    print("[ 4 ] – Comprovativo NIB")
-    print("[ 3 ] – Consultar Saldo")
-    print("[ 3 ] – Consultar Dados")
-    print("[ 5 ] – Sair")
-    while True:
-        try:
-            option = int(input("\nEscolha uma opção: "))
-            if option == 4:
-                print("\nEncerrando...")
-                break
-            if 1 <= option < 4:
-                return option
-            else:
-                print("\nErro ao selecionar opção. Escolha entre 1 e 4.")
-        except KeyboardInterrupt:
-            print("\nInterrompeu o programa!")
-            return None
-        except ValueError:
-            print("\nInsira um valor válido!")
+    def depositar(option):
+        pass
 
 
 nome = input("Nome: ")
