@@ -1,3 +1,10 @@
+"""Idealize um ATM (Caixa Multibanco) onde seja possível
+introduzir um cartão e inserir o código. Aquando da introdução
+correta do código abra um menu onde se poderá depositar,
+levantar, transferir, obter comprovativo de NIB (gera um PDF),
+verificar saldo e visualizar os dados da conta. Coloque todas
+essas funcionalidades em ação."""
+
 from stdiomask import getpass
 from fpdf import FPDF
 
@@ -16,11 +23,14 @@ class ATM:
 
 
 def menu():
-    print("\n--- Menu ---")
-    print("[ 1 ] – Mostrar produtos")
-    print("[ 2 ] – Adicionar produtos")
-    print("[ 3 ] – Alterar produtos")
-    print("[ 4 ] – Sair")
+    print("\n--- Menu ATM ---")
+    print("[ 1 ] – Depoistar")
+    print("[ 2 ] – Levantar")
+    print("[ 3 ] – Transferir")
+    print("[ 4 ] – Comprovativo NIB")
+    print("[ 3 ] – Consultar Saldo")
+    print("[ 3 ] – Consultar Dados")
+    print("[ 5 ] – Sair")
     while True:
         try:
             option = int(input("\nEscolha uma opção: "))
@@ -42,15 +52,14 @@ nome = input("Nome: ")
 saldo = int(input("saldo: "))
 pin = getpass("Digite o pin: ", "*")
 
-minhaATM = ATM(nome, saldo, pin)
+conta = ATM(nome, saldo, pin)
 
-print(minhaATM)  # calls the str method
-print(repr(minhaATM))  # calls the __repr__ method
+print(conta)  # calls the str method
+print(repr(conta))  # calls the __repr__ method
 
 negatiovos = FPDF()
 negatiovos.add_page()
 
 negatiovos.set_font("Arial", size=14)
-negatiovos.cell(200, 10, txt=str(minhaATM), ln=True, align="l")
-negatiovos.output("dados_aTM.pdf"
-                  )
+negatiovos.cell(200, 10, txt=str(conta), ln=True, align="l")
+negatiovos.output("dados_aTM.pdf")
