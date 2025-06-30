@@ -1,7 +1,20 @@
+"""Crie uma classe chamada Produto que inclua
+atributos para o nome e a quantidade em
+stock. Utilize a property para aceder a
+quantidade em stock, garantindo que ela nunca
+seja negativa. Inclua um método mostrar_stock
+que exibe uma mensagem indicando quantas
+unidades do produto estão disponíveis.
+Adicione também um método adicionar_stock que
+permite aumentar a quantidade de stock de um
+produto."""
+
+
 class Produto:
-    def __init__(self, nome, quantidadeStock):
+    def __init__(self, nome, quantidade):
         self.__nome = nome
-        self.__quantidadeStock = quantidadeStock
+        # Garante que nunca começa negativo
+        self.__quantidade = max(0, quantidade)
 
     @property
     def nome(self):
@@ -12,29 +25,25 @@ class Produto:
         self.__nome = nome
 
     @property
-    def quantidadeStock(self):
-        return abs(self.__quantidadeStock)
+    def quantidade(self):
+        return self.__quantidade
 
-    @quantidadeStock.setter
-    def quantidadeStock(self, quantidadeStock):
-        self.__quantidadeStock = quantidadeStock
+    @quantidade.setter
+    def quantidade(self, valor):
+        if valor < 0:
+            print("A quantidade em stock não pode ser negativa!")
+            self.__quantidade = 0
+        else:
+            self.__quantidade = valor
 
+    def mostrar_stock(self):
+        print(
+            f"Existem {self.__quantidade} unidades do produto '{self.__nome}' disponíveis.")
 
-def mostrar_stock(self):
-    return f"{self.nome}: {self.quantidadeStock}"
-
-
-def adicionar_stock(self):
-    unidades = int(input("Escreva as unidades: "))
-    self.quantidadeStock += unidades
-    print(self.quantidadeStock)
-
-
-produto1 = Produto("Batata", -68)
-
-mostrar_stock(produto1)
-produto1 = Produto("Batata", -68)
-
-print(produto1.mostrar_stock())
-produto1.adicionar_stock()
-print(produto1.mostrar_stock())
+    def adicionar_stock(self, quantidade):
+        if quantidade <= 0:
+            print("Só é possível adicionar quantidades positivas ao stock.")
+            return
+        self.__quantidade += quantidade
+        print(
+            f"{quantidade} unidades adicionadas ao stock. Total atual: {self.__quantidade}")
