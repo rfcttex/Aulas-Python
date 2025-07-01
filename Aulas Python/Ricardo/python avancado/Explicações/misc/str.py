@@ -9,10 +9,14 @@ class Conta:
         self.pin = pin
 
     def __str__(self):
-        return f"Conta(titular={self.titular}, saldo={self.saldo})"
+        # __str__ é chamado por print(obj) ou str(obj)
+        # Deve retornar uma representação legível para o usuário
+        return f"ATM(titular={self.titular}, saldo={self.saldo})"
 
     def __repr__(self):
-        return f"Conta(titular={self.titular}, saldo={self.saldo}, pin={self.pin})"
+        # __repr__ é chamado por repr(obj) ou ao digitar o objeto no interpretador
+        # Deve retornar uma representação detalhada, útil para debugging
+        return f"ATM(titular={self.titular}, saldo={self.saldo}, pin={self.pin})"
 
 
 nome = input("Nome: ")
