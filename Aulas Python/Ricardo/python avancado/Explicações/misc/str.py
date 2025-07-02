@@ -33,5 +33,4 @@ negatiovos.add_page()
 
 negatiovos.set_font("Arial", size=14)
 negatiovos.cell(200, 10, txt=str(minhaConta), ln=True, align="l")
-negatiovos.output("dados_conta.pdf"
-                  )
+negatiovos.output("dados_conta.pdf")
