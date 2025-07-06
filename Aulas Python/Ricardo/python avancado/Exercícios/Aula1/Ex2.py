@@ -10,12 +10,15 @@ em SQLITE3.
 # DB -> Biblioteca
 # Classes -> Menu / (Superclass: Document subclasses: Livro, E-book)
 
+from classes.classes import *
 from functions.funcoes import *
 
 
 def main():
     while True:
-        opcao = menu()
+        menu = Menu(["Registar", "Pesquisar", "Vender", "Emprestar"])
+        menu.set_new_title("Menu Da Biblioteca")
+        opcao = menu.show()
         if opcao is None:
             break
         # Switch case
