@@ -53,8 +53,6 @@ class Documento(object):
 
 
 class Livro(Documento):
-    """docstring for Livro."""
-
     def __init__(self, titulo, autor, tipo, paginas):
         super().__init__(titulo, autor, tipo)
         self.paginas = paginas

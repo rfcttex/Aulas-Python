@@ -15,9 +15,13 @@ from functions.funcoes import *
 
 
 def main():
+    # Starts the DB by creating the tables
+    databaseStarter()
     while True:
+        # Start the menu function with the options
         menu = Menu(["Registar", "Pesquisar", "Vender", "Emprestar"])
         menu.set_new_title("Menu Da Biblioteca")
+        # Call to the menu function to take in the selected option
         opcao = menu.show()
         if opcao is None:
             break

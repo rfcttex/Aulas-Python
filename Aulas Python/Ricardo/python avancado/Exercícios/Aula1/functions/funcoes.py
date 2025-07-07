@@ -1,20 +1,9 @@
-# Functions -> ConnectDB , registar, pesquisar, vender , emprestar
+def tableNameGetter():
+    tabelaName = input(f"Escreva o nome da tabela: ")
+    return tabelaName
 
-def connectDB():
-    # 0 Importações sqlite3
-    import sqlite3
-    import pwinput
 
-    # Nome da tabela a ser usada
-    nomeTabela = "biblioteca"
-
-    # 1 Estabelecer conexão com o banco de dados SQLite
-    conn = sqlite3.connect(
-        "Ricardo\\python avancado\\Exercícios\\Aula1\\data\\db.db")
-
-    # 2 Criar cursor para executar comandos SQL
-    cursor = conn.cursor()
-
+def databaseStarter():
     # 3 Criar as tabelas se ela não existirem
     queryDocumento = '''
     CREATE TABLE IF NOT EXISTS documento  (
@@ -30,7 +19,7 @@ def connectDB():
         titulo TEXT NOT NULL,
         autor TEXT NOT NULL,
         tipo TEXT NOT NULL,
-        paginas INTEGER NOT NULL,    
+        paginas INTEGER NOT NULL
         )
     '''
     queryEbook = '''
@@ -40,83 +29,120 @@ def connectDB():
         autor TEXT NOT NULL,
         tipo TEXT NOT NULL,
         tamanho INTEGER NOT NULL,
-        extensao TEXT NOT NULL    
+        extensao TEXT NOT NULL
         )
     '''
-    cursor.execute(queryDocumento, queryLivro, queryEbook)
+    connection().execute(queryDocumento)
+    connection().execute(queryLivro)
+    connection().execute(queryEbook)
 
-    # --- Inserção de dados ---
-    numTabela = int(
-        input(f"Escreva o numero de instancias que deseja inserir que quer inserir na tabela {nomeTabela}: "))
-    for i in range(0, numTabela, 1):
-        nome = input(f"Digite o nome do aluno {i+1}: ")
-        idade = int(input(f"Digite a idade do aluno {i+1}: "))
-        disciplina = input(f"Digite a disciplina do aluno {i+1}: ")
-        cursor.execute(
-            f"INSERT INTO {nomeTabela} (nome, idade, disciplina) VALUES (?, ?, ?)", (nome, idade, disciplina))
-    conn.commit()
-
-    # Recuperar e exibir todos os alunos antes do update
-    query = f"SELECT * FROM {nomeTabela}"
-    cursor.execute(query)
-    rows = cursor.fetchall()
-
-    print(f"Antes do Update")
-    for row in rows:
-        print(f"ID: {row[0]}")
-        print(f"nome: {row[1]}")
-        print(f"idade: {row[2]}")
-        print(f"disciplina: {row[3]}")
-        print(f"---------------------")
-
-    # Buscar aluno com ID 1 para atualizar seus dados
-    querySelect = f"SELECT * FROM {nomeTabela} WHERE id = ?"
-    cursor.execute(querySelect, (1,))
-    aluno = cursor.fetchone()
-
-    if aluno:
-        # Novos dados para o aluno de ID 1
-        novo_nome = "Alfredo"
-        nova_idade = 40
-        nova_disciplina = "Vigilante"
-        # Query de atualização
-        queryUpdate = f'''
-            UPDATE {nomeTabela}
-            SET nome = ?,
-                idade = ?,
-                disciplina = ?
-            WHERE id = ?
-        '''
-        cursor.execute(
-            queryUpdate, (novo_nome, nova_idade, nova_disciplina, 1))
-        conn.commit()
-    else:
-        print("Aluno not found!")
-
-    # Exibir todos os alunos após o update
-    print(f"Depois do Update")
-    # ATENÇÃO: rows ainda contém os dados antigos, pois não foi feito um novo SELECT após o update.
-    # Para mostrar os dados atualizados, faça um novo SELECT:
-    cursor.execute(f"SELECT * FROM {nomeTabela}")
-    rows = cursor.fetchall()
-    for row in rows:
-        print(f"ID: {row[0]}")
-        print(f"nome: {row[1]}")
-        print(f"idade: {row[2]}")
-        print(f"disciplina: {row[3]}")
-        print(f"---------------------")
-
+    # Concretizar as mudanças
+    connection("commit")
     # 4 Fechar a conexão com o banco de dados
-    conn.close()
-    pass
+    connection("close")
+
+
+def connection(action="open"):
+    import os
+    import sqlite3
+
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    db_path = os.path.join(base_dir, '..', 'data', 'db.db')
+    db_path = os.path.normpath(db_path)
+    conn = sqlite3.connect(db_path)
+
+    if action == "open":
+        cursor = conn.cursor()
+        return cursor
+    elif action == "commit":
+        conn.commit()
+    elif action == "close":
+        conn.close()
+    else:
+        raise ValueError("Invalid action...")
 
 
 def registar():
-    pass
+    import os
+    import sqlite3
+
+    # 1 Estabelecer conexão com o banco de dados SQLite
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    db_path = os.path.join(base_dir, '..', 'data', 'db.db')
+    db_path = os.path.normpath(db_path)
+    conn = sqlite3.connect(db_path)
+
+    cursor = conn.cursor()
+
+    selection = input(
+        "Deseja registar um livro ou um e-book? ").strip().lower()
+    numTabela = int(
+        input(f"Quantos registros do {selection} deseja inserir?: "))
+
+    if selection == "livro":
+        for i in range(0, numTabela, 1):
+            titulo = input(f"\nDigite o título do livro {i+1}: ")
+            autor = input(f"Digite o autor do livro {i+1}: ")
+            tipo = input(f"Digite o tipo do livro {i+1}: ")
+            paginas = int(
+                input(f"Digite o número de páginas do livro {i+1}: "))
+            cursor.execute(
+                "INSERT INTO livro (titulo, autor, tipo, paginas) VALUES (?, ?, ?, ?)",
+                (titulo, autor, tipo, paginas)
+            )
+        conn.commit()
+        print(f"{numTabela} livro(s) registrado(s) com sucesso!")
+    else:
+        for i in range(0, numTabela, 1):
+            titulo = input(f"Digite o título do e-book {i+1}: ")
+            autor = input(f"Digite o autor do e-book {i+1}: ")
+            tipo = input(f"Digite o tipo do e-book {i+1}: ")
+            tamanho = int(input(f"Digite o tamanho do e-book {i+1} (em MB): "))
+            extensao = input(
+                f"Digite a extensão do e-book {i+1} (ex: pdf, epub): ")
+            cursor.execute(
+                "INSERT INTO ebook (titulo, autor, tipo, tamanho, extensao) VALUES (?, ?, ?, ?, ?)",
+                (titulo, autor, tipo, tamanho, extensao)
+            )
+        conn.commit()
+        print(f"{numTabela} e-book(s) registrado(s) com sucesso!")
+    conn.close()
 
 
 def pesquisar():
-    pass
+
+    import os
+    import sqlite3
+
+    # 1 Estabelecer conexão com o banco de dados SQLite
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    db_path = os.path.join(base_dir, '..', 'data', 'db.db')
+    db_path = os.path.normpath(db_path)
+    conn = sqlite3.connect(db_path)
+
+    cursor = conn.cursor()
+
+    selection = input(
+        "Deseja registar um livro ou um e-book? ").strip().lower()
+    numTabela = int(
+        input(f"Quantos registros do {selection} deseja inserir?: "))
+
+    if selection == "livro":
+        # Recuperar e exibir todos os alunos antes do update
+        query = f"SELECT * FROM {tableNameGetter()}"
+        cursor.execute(query)
+        rows = cursor.fetchall()
+
+        print(f"Antes do Update")
+        for row in rows:
+            print(f"ID: {row[0]}")
+            print(f"nome: {row[1]}")
+            print(f"idade: {row[2]}")
+            print(f"disciplina: {row[3]}")
+            print(f"---------------------")
+    else:
+
+        conn.close()
 
 
 def vender():
@@ -125,6 +151,8 @@ def vender():
 
 def emprestar():
     pass
+
+# !--------------------------------------------------------------------------------------------------
 
 
 def show_all_books():
