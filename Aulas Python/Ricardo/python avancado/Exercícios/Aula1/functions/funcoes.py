@@ -111,16 +111,7 @@ def registar():
 
 def pesquisar():
 
-    import os
-    import sqlite3
-
-    # 1 Estabelecer conexão com o banco de dados SQLite
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    db_path = os.path.join(base_dir, '..', 'data', 'db.db')
-    db_path = os.path.normpath(db_path)
-    conn = sqlite3.connect(db_path)
-
-    cursor = conn.cursor()
+    connection()
 
     selection = input(
         "Deseja registar um livro ou um e-book? ").strip().lower()
@@ -130,8 +121,8 @@ def pesquisar():
     if selection == "livro":
         # Recuperar e exibir todos os alunos antes do update
         query = f"SELECT * FROM {tableNameGetter()}"
-        cursor.execute(query)
-        rows = cursor.fetchall()
+        connection().execute(query)
+        rows = connection().fetchall()
 
         print(f"Antes do Update")
         for row in rows:
@@ -141,8 +132,7 @@ def pesquisar():
             print(f"disciplina: {row[3]}")
             print(f"---------------------")
     else:
-
-        conn.close()
+        connection("close")
 
 
 def vender():
