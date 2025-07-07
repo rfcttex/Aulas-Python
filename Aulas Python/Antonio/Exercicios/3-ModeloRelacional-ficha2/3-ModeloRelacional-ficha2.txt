@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------
+Exercício 1
+
+1)
+
+**Resposta:**
+  1. (CodEspaço / Espaço) + (NumCC / Funcionário)
+--------------------------------------------------------------------------------
+2)
+
+**Resposta:**
+  1. (Espaço / Gestor) + (Funcionário / Espaço & Supervisor)
+--------------------------------------------------------------------------------
+3)
+
+  - INSERE FUNCIONÁRIO('ABCDEF', 'Roberto Pires', 'CP', 12345678,...)
+    Justificação: Chave primária de diferente tipo do préviamente defenido (numérico).
+
+  - INSERE FUNCIONÁRIO(12345678, 'Roberto Pires', 'CP', 22444552,...)
+    Justificação: Chave primária repetida.
+    
+  - INSERE FUNCIONÁRIO(23884312, 'Roberto Pires', 'CP', 12345679,...)
+    Justificação: Chave estrangeira não liga a nenhum outro funcionário.
+
+  - INSERE ESPAÇO(NULL,'Null All Night', ...)
+    Justificação: Chave primária não poderá ser null.
+
+  - REMOVE ESPAÇO('CP')
+    Justificação: Funcionários ainda associados ao espaço 'CP' 
+
+  - REMOVE FUNCIONÁRIO(12345678)
+    Justificação: Sem pk correspondente
+
+  - REMOVE FUNCIONÁRIO(18923444)
+    Justificação: Esse funcionário é o supervisor de outro
+
+  - ACTUALIZA FUNCIONÁRIO(22444552, Espaço → 'XPTO')
+    Justificação: Espaço com o atributo "XPTO" não existe
+
+  - ACTUALIZA ESPAÇO(CP,Nome → NULL)
+    Justificação: O nome do Espaço não poderá ser NULL
+
+  - ACTUALIZA ESPAÇO(TR,Gestor → 12345679)
+    Justificação: Registo não encontrado
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Exercício 2

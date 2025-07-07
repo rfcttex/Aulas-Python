@@ -24,13 +24,13 @@ def main():
         # Switch case
         match opcao:
             case 1:
-                show_all_books()
+                registar()
             case 2:
-                searches()
+                pesquisar()
             case 3:
-                borrow()
+                vender()
             case 4:
-                return_book()
+                emprestar()
             case _:
                 print("Opção inválida!")
                 print()
