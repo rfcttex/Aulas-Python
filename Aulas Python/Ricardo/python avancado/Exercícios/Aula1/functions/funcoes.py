@@ -127,9 +127,9 @@ def pesquisar():
         print(f"Antes do Update")
         for row in rows:
             print(f"ID: {row[0]}")
-            print(f"nome: {row[1]}")
-            print(f"idade: {row[2]}")
-            print(f"disciplina: {row[3]}")
+            print(f"titulo: {row[1]}")
+            print(f"autor: {row[2]}")
+            print(f"tipo: {row[3]}")
             print(f"---------------------")
     else:
         connection("close")
