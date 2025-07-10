@@ -7,7 +7,7 @@ class Interface:
         self.__janela = tk.Tk()
         self.__janela.title("Gerador de passwords")
         self.__janela.geometry("300x200")
-        icon = tk.PhotoImage(file='python-avancado\\projetos\\tkinter\\icon.png')
+        icon = tk.PhotoImage(file='Aulas Python\\Ricardo\\python avancado\\Projetos\\Projeto Tkinter\\icon.png')
         self.__janela.iconphoto(False, icon)
 
         self.maiusculas = tk.BooleanVar(value=True)
